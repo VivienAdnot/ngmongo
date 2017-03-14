@@ -1,3 +1,7 @@
+https://medium.freecodecamp.com/serverless-rest-api-with-angular-persistence-and-security-ff274f04e3d0#.vhmh52qna
+https://manage.auth0.com/#/clients/WXroPcMRV7PnZVDPallSspaypRs1EVD2/quickstart
+https://mlab.com/databases/task-list#users
+
 # TaskList
 
 This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.22.
