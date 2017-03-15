@@ -8,19 +8,40 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 
 import { AuthService } from './auth.service';
 import { MaterialModule } from '@angular/material';
+import { TaskListComponent } from './task-list/task-list.component';
+import { TaskFormComponent } from './task-list/task-form/task-form.component';
+
+import { Http, RequestOptions } from '@angular/http';
+import { AuthHttp, AuthConfig } from 'angular2-jwt';
+import { TaskListService } from './task-list/task-list.service';
+
+// creates a factory to AuthHttp
+export function authHttpFactory(http: Http, options: RequestOptions) {
+    return new AuthHttp(new AuthConfig(), http, options);
+}
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    NavBarComponent
-  ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    HttpModule,
-    MaterialModule.forRoot(),
-  ],
-  providers: [AuthService],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        NavBarComponent,
+        TaskListComponent,
+        TaskFormComponent
+    ],
+    imports: [
+        BrowserModule,
+        FormsModule,
+        HttpModule,
+        MaterialModule.forRoot(),
+    ],
+    providers: [
+        AuthService,
+        TaskListService,
+        {
+            provide: AuthHttp,
+            useFactory: authHttpFactory,
+            deps: [ Http, RequestOptions ]
+        }
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }
