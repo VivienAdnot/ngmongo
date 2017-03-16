@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { TaskListService } from './task-list.service';
 
 @Component({
@@ -7,6 +7,8 @@ import { TaskListService } from './task-list.service';
     styleUrls: ['./task-list.component.css']
 })
 export class TaskListComponent implements OnInit {
+    @Output() startAjaxRequest = new EventEmitter<void>();
+    @Output() completeAjaxRequest = new EventEmitter<void>();
 
     private tasks: String[];
 
@@ -17,13 +19,18 @@ export class TaskListComponent implements OnInit {
     }
 
     private loadTasks() {
+        this.startAjaxRequest.emit();
+
         this.taskListService.loadTasks$().subscribe(
             response => this.tasks = response.json(),
-            error => console.log(error)
+            error => console.log(error),
+            () => this.completeAjaxRequest.emit()
         );
     }
 
     taskAddedHandler(task) {
+        this.startAjaxRequest.emit();
+
         this.taskListService.addTask$(task).subscribe(
             response => this.loadTasks(),
             error => console.log()
@@ -31,6 +38,8 @@ export class TaskListComponent implements OnInit {
     }
 
     deleteTask(task) {
+        this.startAjaxRequest.emit();
+        
         this.taskListService.deleteTask$(task).subscribe(
             response => this.loadTasks(),
             error => console.log()

@@ -15,6 +15,8 @@ import { Http, RequestOptions } from '@angular/http';
 import { AuthHttp, AuthConfig } from 'angular2-jwt';
 import { TaskListService } from './task-list/task-list.service';
 
+import { SlimLoadingBarModule } from 'ng2-slim-loading-bar';
+
 // creates a factory to AuthHttp
 export function authHttpFactory(http: Http, options: RequestOptions) {
     return new AuthHttp(new AuthConfig(), http, options);
@@ -32,6 +34,7 @@ export function authHttpFactory(http: Http, options: RequestOptions) {
         FormsModule,
         HttpModule,
         MaterialModule.forRoot(),
+        SlimLoadingBarModule.forRoot()
     ],
     providers: [
         AuthService,

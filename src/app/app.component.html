@@ -8,5 +8,11 @@
         </md-card-subtitle>
     </md-card>
 
-    <app-task-list *ngIf="authService.authenticated()"></app-task-list>
+    <app-task-list *ngIf="authService.authenticated()"
+        (startAjaxRequest)="slimLoading.start()"
+        (completeAjaxRequest)="slimLoading.complete()">
+    </app-task-list>
+
+    <!-- adds the slim loading bar to our app -->
+    <ng2-slim-loading-bar [color]="'gold'" [height]="'4px'"></ng2-slim-loading-bar>
 </div>

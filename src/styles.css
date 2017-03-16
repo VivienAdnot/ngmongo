@@ -1,4 +1,5 @@
 @import '~@angular/material/core/theming/prebuilt/indigo-pink.css';
+@import '~ng2-slim-loading-bar/bundles/style.css';
 
 body {
     margin: 0;
